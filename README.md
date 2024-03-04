@@ -25,24 +25,26 @@ Throughout this process, I emphasized clean, modular code and robust error handl
 
 In the provided code, three main directories are utilized to organize the workflow of extracting, processing, and saving text data. The purpose and use of these directories, as mentioned in the code, are as follows:
 
-1. Input Directory (EXDT)
+i. Input Directory (EXDT)
 Purpose: This directory serves as the initial storage location for text files that are created from the content extracted from URLs. After fetching the HTML content of each URL listed in the input Excel file, the text content (specifically from paragraph tags) is saved into text files. Each file corresponds to one URL's content.
 Use in Code: The script checks if this directory exists at the beginning of execution. If it doesn't exist, it creates the directory using os.makedirs(input_directory).
 Extracted text for each URL is saved into this directory by the save_text_to_file function, which creates a text file named after the URL's identifier (url_id) and writes the extracted text into it.
 
-2. Output Directory (SWdata)
+ii. Output Directory (SWdata)
 Purpose: This directory is intended for storing the final analysis results, particularly the Excel file named Output.xlsx that contains the sentiment and readability metrics calculated for each URL's text content.
 Use in Code: Similar to the input directory, the script ensures this directory exists before attempting to save the output Excel file. If it doesn't exist, it's created using os.makedirs(output_directory).
 After calculating the sentiment scores and readability metrics for each text file, compiling these into a pandas DataFrame, and arranging the columns in the specified order, the DataFrame is saved as an Excel file (Output.xlsx) in this directory.
 
 
 
-3. Stop Words Directory (StopWords)
+iii. Stop Words Directory (StopWords)
 Purpose: This directory contains text files with lists of stopwords. Stopwords are common words (like "the", "is", "at") that are often removed before processing text to ensure the analysis focuses on the more meaningful content.
 
 Use in Code: The script loads stopwords from text files located in this directory at the start of its execution. This is done through the load_stop_words function, which reads each file in the directory, adding the words to a set of stopwords.
 These loaded stopwords are then used to filter out common words from the extracted text content of each URL, as part of the text cleaning process before calculating sentiment scores and readability metrics.
 Each of these directories plays a crucial role in the structured workflow of the script, from managing raw text data extracted from URLs to storing the results of the analysis in an easily accessible format.
+
+
 
 
 
@@ -61,6 +63,7 @@ EXDT: Stores raw text extracted from URLs.
 SWdata: Destination for the final output, Output.xlsx.
 StopWords: Contains text files with lists of stopwords to be filtered out during analysis.
 If these directories do not exist, create them in the same location as the script.
+
 Step 4: Master Dictionary
 The sentiment analysis relies on lists of positive and negative words located in the MasterDictionary directory. Verify the presence of positive-words.txt and negative-words.txt files in this directory.
 
@@ -70,6 +73,9 @@ With the environment set up and input data prepared, execute the script from a t
 Step 6: Verify the Output
 Upon successful execution, the SWdata directory should contain the Output.xlsx file. This file will include the analysis results, with each row corresponding to a URL from the input file and columns detailing metrics like sentiment scores and readability metrics.
 Troubleshooting: If issues arise during execution, consult the console output for error messages. Common problems may include missing libraries (resolve by installing through pip), incorrect file paths or directory names, or issues with internet connectivity that may affect URL content fetching.
+
+
+
 
 
 
